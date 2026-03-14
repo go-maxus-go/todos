@@ -7,27 +7,30 @@
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-    in {
-      packages.${system}.default = pkgs.gemini-cli;
 
-      apps.${system}.default = {
-        type = "app";
-        program = "${pkgs.gemini-cli}/bin/gemini";
+      sandboxTools = with pkgs; [
+        gemini-cli
+        ripgrep
+        fd
+        nodejs
+        python3
+        jq
+        bash
+        coreutils
+        cacert
+      ];
+
+      sandboxEnv = pkgs.buildEnv {
+        name = "gemini-sandbox-env";
+        paths = sandboxTools;
       };
 
+    in {
       devShells.${system}.default = pkgs.mkShell {
-        packages = with pkgs; [
-          gemini-cli
-          ripgrep
-          fd
-          git
-          nodejs
-          python3
-          jq
-        ];
+        packages = sandboxTools ++ (with pkgs; [ bubblewrap ]);
 
-        shellHook = ''
-        '';
+        SANDBOX_ENV_PATH = "${sandboxEnv}";
+        SSL_CERT_FILE = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
       };
     };
 }
