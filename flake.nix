@@ -25,12 +25,23 @@
         paths = sandboxTools;
       };
 
+      settingsJson = pkgs.writeText "gemini-settings.json" ''
+        {
+          "security": {
+            "folderTrust": {
+              "enabled": false
+            }
+          }
+        }
+      '';
+
     in {
       devShells.${system}.default = pkgs.mkShell {
         packages = sandboxTools ++ (with pkgs; [ bubblewrap ]);
 
         SANDBOX_ENV_PATH = "${sandboxEnv}";
         SSL_CERT_FILE = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
+        GEMINI_CLI_SYSTEM_SETTINGS_PATH = "${settingsJson}";
       };
     };
 }

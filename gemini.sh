@@ -19,6 +19,7 @@ exec bwrap \
   --setenv PATH "$SANDBOX_ENV_PATH/bin" \
   --setenv GEMINI_API_KEY "$GEMINI_API_KEY" \
   --setenv SSL_CERT_FILE "$SSL_CERT_FILE" \
+  --setenv GEMINI_CLI_SYSTEM_SETTINGS_PATH "$GEMINI_CLI_SYSTEM_SETTINGS_PATH" \
   --setenv HOME "/tmp" \
   --chdir "$PROJECT_DIR" \
   "$SANDBOX_ENV_PATH/bin/gemini" "$@"
