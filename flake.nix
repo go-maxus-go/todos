@@ -30,6 +30,9 @@
           "security": {
             "folderTrust": {
               "enabled": false
+            },
+            "auth": {
+              "selectedType": "gemini-api-key"
             }
           }
         }
