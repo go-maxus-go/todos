@@ -22,4 +22,4 @@ exec bwrap \
   --setenv GEMINI_CLI_SYSTEM_SETTINGS_PATH "$GEMINI_CLI_SYSTEM_SETTINGS_PATH" \
   --setenv HOME "/tmp" \
   --chdir "$PROJECT_DIR" \
-  "$SANDBOX_ENV_PATH/bin/gemini" "$@"
+  "$SANDBOX_ENV_PATH/bin/gemini" --yolo "$@"

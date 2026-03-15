@@ -1,0 +1,35 @@
+#!/usr/bin/env python3
+import argparse
+import sys
+
+def main():
+    parser = argparse.ArgumentParser(description="Reverses text provided via standard input. Can selectively reverse only a specific number of characters.")
+    parser.add_argument("-n", "--number", type=int, default=-1, help="Number of characters to reverse from the start (default: -1 for all)")
+
+    # If --help is called, it will print and exit.
+    args = parser.parse_args()
+
+    # Read input from stdin
+    input_text = sys.stdin.read()
+    
+    # Handle optional trailing newline from echo/pipes
+    if input_text.endswith('\n'):
+        input_text = input_text[:-1]
+        has_newline = True
+    else:
+        has_newline = False
+
+    if args.number == -1:
+        reversed_text = input_text[::-1]
+    else:
+        # If n is specified, reverse only the first n characters
+        n = args.number
+        reversed_text = input_text[:n][::-1] + input_text[n:]
+
+    if has_newline:
+        print(reversed_text)
+    else:
+        sys.stdout.write(reversed_text)
+
+if __name__ == "__main__":
+    main()
