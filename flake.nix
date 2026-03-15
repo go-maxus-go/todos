@@ -13,7 +13,7 @@
         ripgrep
         fd
         nodejs
-        python3
+        (python3.withPackages (ps: with ps; [ fastmcp ]))
         jq
         bash
         coreutils
