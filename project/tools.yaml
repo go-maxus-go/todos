@@ -1,0 +1,7 @@
+tools:
+  animal:
+    executable: "./animal"
+    description: "Simulate the sounds of various farm animals. Supports customizing the number of repetitions and loudness."
+  reverser:
+    executable: "./reverser"
+    description: "Reverses text provided via standard input. Can selectively reverse only a specific number of characters."
