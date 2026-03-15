@@ -9,7 +9,8 @@ def main():
         "cow": "moo",
         "pig": "oink",
         "duck": "quack",
-        "horse": "neigh"
+        "horse": "neigh",
+        "fox": "???"
     }
 
     for animal_name in animals:

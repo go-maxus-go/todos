@@ -27,6 +27,12 @@
 
       settingsJson = pkgs.writeText "gemini-settings.json" ''
         {
+          "mcpServers": {
+            "project-tools": {
+              "command": "python3",
+              "args": ["mcp_tools.py"]
+            }
+          },
           "security": {
             "folderTrust": {
               "enabled": false
